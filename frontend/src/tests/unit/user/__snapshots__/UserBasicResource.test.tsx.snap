@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UserBasicResource > should match snapshot 1`] = `
+<div>
+  <div>
+    <h3>
+      Hola 
+      test
+    </h3>
+    <p>
+      id: 
+      1
+    </p>
+  </div>
+</div>
+`;
