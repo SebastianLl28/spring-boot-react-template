@@ -3,6 +3,7 @@ package com.app.backend.configuration.filter;
 import com.app.backend.persistence.entity.User;
 import com.app.backend.persistence.repository.UserRepository;
 import com.app.backend.util.JwtUtil;
+import com.app.backend.util.AppConstant;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,6 +28,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
+
+    String publicBaseEndpoint = AppConstant.PUBLIC_ENDPOINT_PREFIX;
+
+    if (request.getRequestURI().startsWith(publicBaseEndpoint)) {
+      filterChain.doFilter(request, response);
+      return;
+    }
 
     String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
